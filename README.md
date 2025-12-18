@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Prevent zoom in / out -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Your Spirit Emoji ✨</title>
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1.2s forwards;
+    }
+
+    #emoji {
+      font-size: 120px;
+      opacity: 0;
+      animation: popIn 0.8s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Your spirit emoji is…</h1>
+  <div id="emoji"></div>
+
+  <script>
+    const emojis = [
+      "😃","😆","😁","😉","😗","🤪","😏",
+      "🙂‍↕️","🙂‍↔️","☹️","😭","😠",
+      "🫣","🫡","🤔","🫢","🤫","🤥",
+      "😮","🥱","🤮"
+    ];
+
+    const STORAGE_KEY = "spiritEmoji";
+
+    // Get saved emoji
+    let emoji = localStorage.getItem(STORAGE_KEY);
+
+    // Assign ONLY ONCE
+    if (!emoji) {
+      emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      localStorage.setItem(STORAGE_KEY, emoji);
+    }
+
+    // Show emoji
+    document.getElementById("emoji").textContent = emoji;
+  </script>
+
+</body>
+</html>
