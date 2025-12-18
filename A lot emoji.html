@@ -1,7 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Prevent zoom in / out -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Your Spirit Emoji ✨</title>
 
   <style>
@@ -36,20 +40,13 @@
     }
 
     @keyframes popIn {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-      70% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
+
 <body>
 
   <h1>Your spirit emoji is…</h1>
@@ -57,12 +54,25 @@
 
   <script>
     const emojis = [
-      "😀","😂","🥹","😍","😎","🤯","🥳","😴","🤔",
-      "😈","👻","💀","🔥","🌈","⭐","🍕","🍩","🚀","🦄"
+      "😃","😆","😁","😉","😗","🤪","😏",
+      "🙂‍↕️","🙂‍↔️","☹️","😭","😠",
+      "🫣","🫡","🤔","🫢","🤫","🤥",
+      "😮","🥱","🤮"
     ];
 
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-    document.getElementById("emoji").textContent = randomEmoji;
+    const STORAGE_KEY = "spiritEmoji";
+
+    // Get saved emoji
+    let emoji = localStorage.getItem(STORAGE_KEY);
+
+    // Assign ONLY ONCE
+    if (!emoji) {
+      emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      localStorage.setItem(STORAGE_KEY, emoji);
+    }
+
+    // Show emoji
+    document.getElementById("emoji").textContent = emoji;
   </script>
 
 </body>
